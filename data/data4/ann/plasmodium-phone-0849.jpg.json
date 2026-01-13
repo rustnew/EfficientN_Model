@@ -1,0 +1,82 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 750,
+        "width": 750
+    },
+    "objects": [
+        {
+            "id": 98189163,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:34.048Z",
+            "updatedAt": "2023-12-15T16:15:34.048Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        171,
+                        536
+                    ],
+                    [
+                        211,
+                        576
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98189162,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:34.048Z",
+            "updatedAt": "2023-12-15T16:15:34.048Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        489,
+                        589
+                    ],
+                    [
+                        529,
+                        629
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98189161,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:34.047Z",
+            "updatedAt": "2023-12-15T16:15:34.047Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        352,
+                        411
+                    ],
+                    [
+                        392,
+                        451
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

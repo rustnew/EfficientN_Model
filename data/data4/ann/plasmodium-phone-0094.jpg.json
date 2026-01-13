@@ -1,0 +1,250 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 750,
+        "width": 750
+    },
+    "objects": [
+        {
+            "id": 98183660,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.184Z",
+            "updatedAt": "2023-12-15T16:15:10.184Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        174,
+                        647
+                    ],
+                    [
+                        214,
+                        687
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183659,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.183Z",
+            "updatedAt": "2023-12-15T16:15:10.183Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        109,
+                        351
+                    ],
+                    [
+                        149,
+                        391
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183658,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.183Z",
+            "updatedAt": "2023-12-15T16:15:10.183Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        421,
+                        197
+                    ],
+                    [
+                        461,
+                        237
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183657,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.179Z",
+            "updatedAt": "2023-12-15T16:15:10.179Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        439,
+                        238
+                    ],
+                    [
+                        479,
+                        278
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183656,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.179Z",
+            "updatedAt": "2023-12-15T16:15:10.179Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        513,
+                        15
+                    ],
+                    [
+                        553,
+                        55
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183655,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.178Z",
+            "updatedAt": "2023-12-15T16:15:10.178Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        399,
+                        15
+                    ],
+                    [
+                        439,
+                        55
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183654,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.177Z",
+            "updatedAt": "2023-12-15T16:15:10.177Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        645,
+                        329
+                    ],
+                    [
+                        685,
+                        369
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183653,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.177Z",
+            "updatedAt": "2023-12-15T16:15:10.177Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        70,
+                        570
+                    ],
+                    [
+                        110,
+                        610
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183652,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.177Z",
+            "updatedAt": "2023-12-15T16:15:10.177Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        537,
+                        473
+                    ],
+                    [
+                        577,
+                        513
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183651,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:10.177Z",
+            "updatedAt": "2023-12-15T16:15:10.177Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        86,
+                        194
+                    ],
+                    [
+                        126,
+                        234
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

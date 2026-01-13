@@ -1,0 +1,20 @@
+{
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "object": {
+    "classTitle": "falciparum",
+    "geometryType": "bitmap",
+    "bitmap": {
+      "origin": [
+        826,
+        49
+      ],
+      "cx": 0.8066406,
+      "cy": 0.047851562,
+      "w": 0.05,
+      "h": 0.05
+    }
+  }
+}

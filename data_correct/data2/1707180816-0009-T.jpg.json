@@ -1,0 +1,20 @@
+{
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "object": {
+    "classTitle": "ovale",
+    "geometryType": "bitmap",
+    "bitmap": {
+      "origin": [
+        1164,
+        841
+      ],
+      "cx": 1.1367188,
+      "cy": 0.82128906,
+      "w": 0.05,
+      "h": 0.05
+    }
+  }
+}

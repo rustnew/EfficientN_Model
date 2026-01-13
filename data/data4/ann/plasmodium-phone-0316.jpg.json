@@ -1,0 +1,82 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 750,
+        "width": 750
+    },
+    "objects": [
+        {
+            "id": 98183828,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:11.020Z",
+            "updatedAt": "2023-12-15T16:15:11.020Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        219,
+                        95
+                    ],
+                    [
+                        259,
+                        135
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183827,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:11.019Z",
+            "updatedAt": "2023-12-15T16:15:11.019Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        40,
+                        296
+                    ],
+                    [
+                        80,
+                        336
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98183826,
+            "classId": 6509559,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:15:11.019Z",
+            "updatedAt": "2023-12-15T16:15:11.019Z",
+            "tags": [],
+            "classTitle": "plasmodium",
+            "points": {
+                "exterior": [
+                    [
+                        604,
+                        268
+                    ],
+                    [
+                        644,
+                        309
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "object": {
+    "classTitle": "malariae",
+    "geometryType": "bitmap",
+    "bitmap": {
+      "origin": [
+        1207,
+        911
+      ],
+      "cx": 1.1787109,
+      "cy": 0.88964844,
+      "w": 0.05,
+      "h": 0.05
+    }
+  }
+}

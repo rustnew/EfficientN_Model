@@ -1,0 +1,322 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 768,
+        "width": 1024
+    },
+    "objects": [
+        {
+            "id": 98175970,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.880Z",
+            "updatedAt": "2023-12-15T16:14:03.880Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        297,
+                        216
+                    ],
+                    [
+                        347,
+                        266
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175969,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.880Z",
+            "updatedAt": "2023-12-15T16:14:03.880Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        771,
+                        98
+                    ],
+                    [
+                        857,
+                        196
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175968,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.880Z",
+            "updatedAt": "2023-12-15T16:14:03.880Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        929,
+                        165
+                    ],
+                    [
+                        979,
+                        215
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175967,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.879Z",
+            "updatedAt": "2023-12-15T16:14:03.879Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        734,
+                        251
+                    ],
+                    [
+                        817,
+                        314
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175966,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.879Z",
+            "updatedAt": "2023-12-15T16:14:03.879Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        824,
+                        387
+                    ],
+                    [
+                        928,
+                        490
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175965,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.878Z",
+            "updatedAt": "2023-12-15T16:14:03.878Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        545,
+                        330
+                    ],
+                    [
+                        627,
+                        428
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175964,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.878Z",
+            "updatedAt": "2023-12-15T16:14:03.878Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        203,
+                        212
+                    ],
+                    [
+                        253,
+                        262
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175963,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.878Z",
+            "updatedAt": "2023-12-15T16:14:03.878Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        223,
+                        247
+                    ],
+                    [
+                        273,
+                        297
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175962,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.878Z",
+            "updatedAt": "2023-12-15T16:14:03.878Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        213,
+                        284
+                    ],
+                    [
+                        263,
+                        334
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175961,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.878Z",
+            "updatedAt": "2023-12-15T16:14:03.878Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        156,
+                        280
+                    ],
+                    [
+                        206,
+                        330
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175960,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.877Z",
+            "updatedAt": "2023-12-15T16:14:03.877Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        393,
+                        17
+                    ],
+                    [
+                        443,
+                        67
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175959,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.877Z",
+            "updatedAt": "2023-12-15T16:14:03.877Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        523,
+                        60
+                    ],
+                    [
+                        573,
+                        110
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98175958,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:14:03.877Z",
+            "updatedAt": "2023-12-15T16:14:03.877Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        819,
+                        575
+                    ],
+                    [
+                        869,
+                        625
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+  "description": "",
+  "tags": [
+    {
+      "id": 18741092,
+      "tagId": 31223,
+      "name": "ring stage",
+      "value": null,
+      "labelerLogin": "inbox@datasetninja.com",
+      "createdAt": "2024-03-01T15:30:23.917Z",
+      "updatedAt": "2024-03-01T15:30:23.917Z",
+      "stage_id": 0
+    },
+    {
+      "id": 18741093,
+      "tagId": 31224,
+      "name": "trophozoite stage",
+      "value": null,
+      "labelerLogin": "inbox@datasetninja.com",
+      "createdAt": "2024-03-01T15:30:23.917Z",
+      "updatedAt": "2024-03-01T15:30:23.917Z",
+      "stage_id": 0
+    }
+  ],
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "objects": [
+    {
+      "id": 150127644,
+      "classId": 6533080,
+      "objectId": null,
+      "description": "",
+      "geometryType": "bitmap",
+      "labelerLogin": "inbox@datasetninja.com",
+      "createdAt": "2024-03-01T15:30:23.919Z",
+      "updatedAt": "2024-03-01T15:30:23.919Z",
+      "tags": [],
+      "classTitle": "falciparum",
+      "class_id": 0,
+      "bitmap": {
+        "data": "",
+        "origin": [
+          1913,
+          145
+        ],
+        "cx": 1.8681641,
+        "cy": 0.14160156,
+        "w": 0.05,
+        "h": 0.05
+      }
+    }
+  ]
+}

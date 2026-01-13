@@ -1,0 +1,20 @@
+{
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "object": {
+    "classTitle": "vivax",
+    "geometryType": "bitmap",
+    "bitmap": {
+      "origin": [
+        1471,
+        521
+      ],
+      "cx": 1.4365234,
+      "cy": 0.50878906,
+      "w": 0.05,
+      "h": 0.05
+    }
+  }
+}

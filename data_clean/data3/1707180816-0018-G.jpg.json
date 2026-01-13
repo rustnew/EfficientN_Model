@@ -1,0 +1,45 @@
+{
+  "description": "",
+  "tags": [
+    {
+      "id": 18741172,
+      "tagId": 31226,
+      "name": "gametocyte stage",
+      "value": null,
+      "labelerLogin": "inbox@datasetninja.com",
+      "createdAt": "2024-03-01T15:32:12.651Z",
+      "updatedAt": "2024-03-01T15:32:12.651Z",
+      "stage_id": 0
+    }
+  ],
+  "size": {
+    "height": 1944,
+    "width": 2592
+  },
+  "objects": [
+    {
+      "id": 150128219,
+      "classId": 6533082,
+      "objectId": null,
+      "description": "",
+      "geometryType": "bitmap",
+      "labelerLogin": "inbox@datasetninja.com",
+      "createdAt": "2024-03-01T15:32:12.652Z",
+      "updatedAt": "2024-03-01T15:32:12.652Z",
+      "tags": [],
+      "classTitle": "ovale",
+      "class_id": 0,
+      "bitmap": {
+        "data": "",
+        "origin": [
+          1725,
+          625
+        ],
+        "cx": 1.6845703,
+        "cy": 0.61035156,
+        "w": 0.05,
+        "h": 0.05
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 768,
+        "width": 1024
+    },
+    "objects": [
+        {
+            "id": 98148245,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:13:09.800Z",
+            "updatedAt": "2023-12-15T16:13:09.800Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        880,
+                        142
+                    ],
+                    [
+                        930,
+                        192
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98148244,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:13:09.800Z",
+            "updatedAt": "2023-12-15T16:13:09.800Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        952,
+                        262
+                    ],
+                    [
+                        1002,
+                        312
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 98148243,
+            "classId": 6509560,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "inbox@datasetninja.com",
+            "createdAt": "2023-12-15T16:13:09.800Z",
+            "updatedAt": "2023-12-15T16:13:09.800Z",
+            "tags": [],
+            "classTitle": "trophozoite",
+            "points": {
+                "exterior": [
+                    [
+                        971,
+                        173
+                    ],
+                    [
+                        1021,
+                        223
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}
