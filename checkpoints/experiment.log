@@ -1,0 +1,577 @@
+2026-01-17T12:27:58.265446Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-01-17T12:27:58.266100Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-01-17T12:27:58.544115Z  INFO cubecl_wgpu::runtime: Using adapter AdapterInfo { name: "Intel(R) UHD Graphics 620 (WHL GT2)", vendor: 32902, device: 16032, device_type: IntegratedGpu, driver: "Intel open-source Mesa driver", driver_info: "Mesa 25.1.5-1pop0~1756399231~22.04~b84bab8", backend: Vulkan }
+2026-01-17T12:27:58.557163Z  INFO cubecl_wgpu::runtime: Created wgpu compute server on device Device { inner: Core(CoreDevice { context: ContextWgpuCore { type: "Native" }, id: Id(0,1), error_sink: Mutex { data: ErrorSink }, features: Features { features_wgpu: FeaturesWGPU(TEXTURE_FORMAT_16BIT_NORM | TEXTURE_ADAPTER_SPECIFIC_FORMAT_FEATURES | PIPELINE_STATISTICS_QUERY | TIMESTAMP_QUERY_INSIDE_ENCODERS | TIMESTAMP_QUERY_INSIDE_PASSES | TEXTURE_BINDING_ARRAY | BUFFER_BINDING_ARRAY | STORAGE_RESOURCE_BINDING_ARRAY | SAMPLED_TEXTURE_AND_STORAGE_BUFFER_ARRAY_NON_UNIFORM_INDEXING | STORAGE_TEXTURE_ARRAY_NON_UNIFORM_INDEXING | PARTIALLY_BOUND_BINDING_ARRAY | MULTI_DRAW_INDIRECT | MULTI_DRAW_INDIRECT_COUNT | PUSH_CONSTANTS | ADDRESS_MODE_CLAMP_TO_ZERO | ADDRESS_MODE_CLAMP_TO_BORDER | POLYGON_MODE_LINE | POLYGON_MODE_POINT | CONSERVATIVE_RASTERIZATION | VERTEX_WRITABLE_STORAGE | CLEAR_TEXTURE | SPIRV_SHADER_PASSTHROUGH | MULTIVIEW | TEXTURE_ATOMIC | TEXTURE_FORMAT_NV12 | SHADER_F64 | SHADER_I16 | SHADER_PRIMITIVE_INDEX | SHADER_EARLY_DEPTH_TEST | SHADER_INT64 | SUBGROUP | SUBGROUP_VERTEX | SUBGROUP_BARRIER | PIPELINE_CACHE | TEXTURE_INT64_ATOMIC), features_webgpu: FeaturesWebGPU(DEPTH_CLIP_CONTROL | DEPTH32FLOAT_STENCIL8 | TEXTURE_COMPRESSION_BC | TEXTURE_COMPRESSION_BC_SLICED_3D | TEXTURE_COMPRESSION_ETC2 | TEXTURE_COMPRESSION_ASTC | TEXTURE_COMPRESSION_ASTC_SLICED_3D | TIMESTAMP_QUERY | INDIRECT_FIRST_INSTANCE | RG11B10UFLOAT_RENDERABLE | BGRA8UNORM_STORAGE | FLOAT32_FILTERABLE | DUAL_SOURCE_BLENDING | CLIP_DISTANCES) } }) } => AdapterInfo { name: "Intel(R) UHD Graphics 620 (WHL GT2)", vendor: 32902, device: 16032, device_type: IntegratedGpu, driver: "Intel open-source Mesa driver", driver_info: "Mesa 25.1.5-1pop0~1756399231~22.04~b84bab8", backend: Vulkan }
+2026-01-17T12:27:57.968158Z  INFO burn_train::learner::train_val: Fitting the model:
+ MalariaEfficientNet {
+  efficientnet: EfficientNetB0 {
+    conv_stem: Conv2d {ch_in: 3, ch_out: 32, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 1, padding: Same, params: 896}
+    blocks: Vec<0..16> {
+      0: MBConv {
+        expand_conv: None
+        depthwise_conv: Conv2d {ch_in: 32, ch_out: 32, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 32, padding: Same, params: 320}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 32, d_output: 8, bias: true, params: 264}
+            fc2: Linear {d_input: 8, d_output: 32, bias: true, params: 288}
+            sigmoid: Sigmoid
+            params: 552
+          }
+        project_conv: Conv2d {ch_in: 32, ch_out: 16, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 528}
+        use_residual: false
+        params: 1400
+      }
+      1: MBConv {
+        expand_conv: Conv2d {ch_in: 16, ch_out: 96, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 1632}
+        depthwise_conv: Conv2d {ch_in: 96, ch_out: 96, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 96, padding: Same, params: 960}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 96, d_output: 24, bias: true, params: 2328}
+            fc2: Linear {d_input: 24, d_output: 96, bias: true, params: 2400}
+            sigmoid: Sigmoid
+            params: 4728
+          }
+        project_conv: Conv2d {ch_in: 96, ch_out: 24, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 2328}
+        use_residual: false
+        params: 9648
+      }
+      2: MBConv {
+        expand_conv: Conv2d {ch_in: 24, ch_out: 144, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3600}
+        depthwise_conv: Conv2d {ch_in: 144, ch_out: 144, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 144, padding: Same, params: 1440}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 144, d_output: 36, bias: true, params: 5220}
+            fc2: Linear {d_input: 36, d_output: 144, bias: true, params: 5328}
+            sigmoid: Sigmoid
+            params: 10548
+          }
+        project_conv: Conv2d {ch_in: 144, ch_out: 24, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3480}
+        use_residual: true
+        params: 19068
+      }
+      3: MBConv {
+        expand_conv: Conv2d {ch_in: 24, ch_out: 144, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3600}
+        depthwise_conv: Conv2d {ch_in: 144, ch_out: 144, stride: [2, 2], kernel_size: [5, 5], dilation: [1, 1], groups: 144, padding: Same, params: 3744}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 144, d_output: 36, bias: true, params: 5220}
+            fc2: Linear {d_input: 36, d_output: 144, bias: true, params: 5328}
+            sigmoid: Sigmoid
+            params: 10548
+          }
+        project_conv: Conv2d {ch_in: 144, ch_out: 40, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 5800}
+        use_residual: false
+        params: 23692
+      }
+      4: MBConv {
+        expand_conv: Conv2d {ch_in: 40, ch_out: 240, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9840}
+        depthwise_conv: Conv2d {ch_in: 240, ch_out: 240, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 240, padding: Same, params: 6240}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 240, d_output: 60, bias: true, params: 14460}
+            fc2: Linear {d_input: 60, d_output: 240, bias: true, params: 14640}
+            sigmoid: Sigmoid
+            params: 29100
+          }
+        project_conv: Conv2d {ch_in: 240, ch_out: 40, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9640}
+        use_residual: true
+        params: 54820
+      }
+      5: MBConv {
+        expand_conv: Conv2d {ch_in: 40, ch_out: 240, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9840}
+        depthwise_conv: Conv2d {ch_in: 240, ch_out: 240, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 240, padding: Same, params: 2400}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 240, d_output: 60, bias: true, params: 14460}
+            fc2: Linear {d_input: 60, d_output: 240, bias: true, params: 14640}
+            sigmoid: Sigmoid
+            params: 29100
+          }
+        project_conv: Conv2d {ch_in: 240, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 19280}
+        use_residual: false
+        params: 60620
+      }
+      6: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 480, padding: Same, params: 4800}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38480}
+        use_residual: true
+        params: 197960
+      }
+      7: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 480, padding: Same, params: 4800}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38480}
+        use_residual: true
+        params: 197960
+      }
+      8: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 480, padding: Same, params: 12480}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 53872}
+        use_residual: false
+        params: 221032
+      }
+      9: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75376}
+        use_residual: true
+        params: 395416
+      }
+      10: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75376}
+        use_residual: true
+        params: 395416
+      }
+      11: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [2, 2], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 129216}
+        use_residual: false
+        params: 449256
+      }
+      12: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      13: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      14: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      15: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 1152, padding: Same, params: 11520}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 320, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 368960}
+        use_residual: false
+        params: 1267808
+      }
+    }
+    conv_head: Conv2d {ch_in: 320, ch_out: 1280, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 410880}
+    relu: Relu
+    num_features: 1280
+    params: 7121840
+  }
+  species_head: SpeciesHead {
+    fc1: Linear {d_input: 1280, d_output: 1280, bias: true, params: 1639680}
+    fc2: Linear {d_input: 1280, d_output: 5, bias: true, params: 6405}
+    dropout: Dropout {prob: 0.3}
+    relu: Relu
+    params: 1646085
+  }
+  stage_head: StageHead {
+    fc1: Linear {d_input: 1280, d_output: 512, bias: true, params: 655872}
+    fc2: Linear {d_input: 512, d_output: 4, bias: true, params: 2052}
+    dropout: Dropout {prob: 0.3}
+    relu: Relu
+    params: 657924
+  }
+  relu: Relu
+  stage_loss_lambda: 0.25
+  training: true
+  params: 9425849
+}
+2026-01-17T12:27:58.719119Z  INFO burn_train::learner::strategies::single::epoch: Executing training step for epoch 1
+2026-01-17T12:28:03.174877Z  INFO burn_train::learner::strategies::single::epoch: Iteration 1
+2026-01-17T12:28:03.182251Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T12:28:03.182412Z  INFO cubecl_runtime::tune::tune_cache: Loaded 6 autotune cached entries
+2026-01-17T12:28:03.305347Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T12:28:03.305481Z  INFO cubecl_runtime::tune::tune_cache: Loaded 4 autotune cached entries
+2026-01-17T12:28:03.309783Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T12:28:03.309906Z  INFO cubecl_runtime::tune::tune_cache: Loaded 8 autotune cached entries
+2026-01-17T12:28:09.240127Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 32, out_channels: 256, shape: [128, 128], batch_size: 4, has_bias: true, dtype: F32 }
+2026-01-17T12:28:10.050780Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 65536, n: 256, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T12:28:26.680566Z  WARN wgpu_hal::vulkan::instance: GENERAL [../src/intel/vulkan/i915/anv_batch_chain.c:975 (0x0)]
+	execbuf2 failed: Input/output error (VK_ERROR_DEVICE_LOST)
+2026-01-17T12:28:26.680634Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: QUEUE, hndl: 0x5ec472cc4c10, name: ?)
+2026-01-17T12:28:26.680736Z ERROR burn_train::learner::application_logger: PANIC => panicked at /home/fossouomartial/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-26.0.1/src/backend/wgpu_core.rs:1663:30:
+Error in Device::poll: Validation Error
+
+Caused by:
+  Parent device is lost
+
+2026-01-17T12:28:26.680776Z ERROR wgpu::backend::wgpu_core: Handling wgpu errors as fatal by default
+2026-01-17T12:28:26.680858Z ERROR burn_train::learner::application_logger: PANIC => panicked at /home/fossouomartial/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-26.0.1/src/backend/wgpu_core.rs:2391:18:
+wgpu error: Validation Error
+
+Caused by:
+  In a CommandEncoder
+    In a pass parameter
+      Encoder is invalid
+
+
+2026-01-17T23:41:47.760870Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-01-17T23:41:47.762824Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-01-17T23:41:48.095352Z  INFO cubecl_wgpu::runtime: Using adapter AdapterInfo { name: "Intel(R) UHD Graphics 620 (WHL GT2)", vendor: 32902, device: 16032, device_type: IntegratedGpu, driver: "Intel open-source Mesa driver", driver_info: "Mesa 25.1.5-1pop0~1756399231~22.04~b84bab8", backend: Vulkan }
+2026-01-17T23:41:48.110870Z  INFO cubecl_wgpu::runtime: Created wgpu compute server on device Device { inner: Core(CoreDevice { context: ContextWgpuCore { type: "Native" }, id: Id(0,1), error_sink: Mutex { data: ErrorSink }, features: Features { features_wgpu: FeaturesWGPU(TEXTURE_FORMAT_16BIT_NORM | TEXTURE_ADAPTER_SPECIFIC_FORMAT_FEATURES | PIPELINE_STATISTICS_QUERY | TIMESTAMP_QUERY_INSIDE_ENCODERS | TIMESTAMP_QUERY_INSIDE_PASSES | TEXTURE_BINDING_ARRAY | BUFFER_BINDING_ARRAY | STORAGE_RESOURCE_BINDING_ARRAY | SAMPLED_TEXTURE_AND_STORAGE_BUFFER_ARRAY_NON_UNIFORM_INDEXING | STORAGE_TEXTURE_ARRAY_NON_UNIFORM_INDEXING | PARTIALLY_BOUND_BINDING_ARRAY | MULTI_DRAW_INDIRECT | MULTI_DRAW_INDIRECT_COUNT | PUSH_CONSTANTS | ADDRESS_MODE_CLAMP_TO_ZERO | ADDRESS_MODE_CLAMP_TO_BORDER | POLYGON_MODE_LINE | POLYGON_MODE_POINT | CONSERVATIVE_RASTERIZATION | VERTEX_WRITABLE_STORAGE | CLEAR_TEXTURE | SPIRV_SHADER_PASSTHROUGH | MULTIVIEW | TEXTURE_ATOMIC | TEXTURE_FORMAT_NV12 | SHADER_F64 | SHADER_I16 | SHADER_PRIMITIVE_INDEX | SHADER_EARLY_DEPTH_TEST | SHADER_INT64 | SUBGROUP | SUBGROUP_VERTEX | SUBGROUP_BARRIER | PIPELINE_CACHE | TEXTURE_INT64_ATOMIC), features_webgpu: FeaturesWebGPU(DEPTH_CLIP_CONTROL | DEPTH32FLOAT_STENCIL8 | TEXTURE_COMPRESSION_BC | TEXTURE_COMPRESSION_BC_SLICED_3D | TEXTURE_COMPRESSION_ETC2 | TEXTURE_COMPRESSION_ASTC | TEXTURE_COMPRESSION_ASTC_SLICED_3D | TIMESTAMP_QUERY | INDIRECT_FIRST_INSTANCE | RG11B10UFLOAT_RENDERABLE | BGRA8UNORM_STORAGE | FLOAT32_FILTERABLE | DUAL_SOURCE_BLENDING | CLIP_DISTANCES) } }) } => AdapterInfo { name: "Intel(R) UHD Graphics 620 (WHL GT2)", vendor: 32902, device: 16032, device_type: IntegratedGpu, driver: "Intel open-source Mesa driver", driver_info: "Mesa 25.1.5-1pop0~1756399231~22.04~b84bab8", backend: Vulkan }
+2026-01-17T23:41:47.423942Z  INFO burn_train::learner::train_val: Fitting the model:
+ MalariaEfficientNet {
+  efficientnet: EfficientNetB0 {
+    conv_stem: Conv2d {ch_in: 3, ch_out: 32, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 1, padding: Same, params: 896}
+    blocks: Vec<0..16> {
+      0: MBConv {
+        expand_conv: None
+        depthwise_conv: Conv2d {ch_in: 32, ch_out: 32, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 32, padding: Same, params: 320}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 32, d_output: 8, bias: true, params: 264}
+            fc2: Linear {d_input: 8, d_output: 32, bias: true, params: 288}
+            sigmoid: Sigmoid
+            params: 552
+          }
+        project_conv: Conv2d {ch_in: 32, ch_out: 16, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 528}
+        use_residual: false
+        params: 1400
+      }
+      1: MBConv {
+        expand_conv: Conv2d {ch_in: 16, ch_out: 96, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 1632}
+        depthwise_conv: Conv2d {ch_in: 96, ch_out: 96, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 96, padding: Same, params: 960}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 96, d_output: 24, bias: true, params: 2328}
+            fc2: Linear {d_input: 24, d_output: 96, bias: true, params: 2400}
+            sigmoid: Sigmoid
+            params: 4728
+          }
+        project_conv: Conv2d {ch_in: 96, ch_out: 24, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 2328}
+        use_residual: false
+        params: 9648
+      }
+      2: MBConv {
+        expand_conv: Conv2d {ch_in: 24, ch_out: 144, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3600}
+        depthwise_conv: Conv2d {ch_in: 144, ch_out: 144, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 144, padding: Same, params: 1440}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 144, d_output: 36, bias: true, params: 5220}
+            fc2: Linear {d_input: 36, d_output: 144, bias: true, params: 5328}
+            sigmoid: Sigmoid
+            params: 10548
+          }
+        project_conv: Conv2d {ch_in: 144, ch_out: 24, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3480}
+        use_residual: true
+        params: 19068
+      }
+      3: MBConv {
+        expand_conv: Conv2d {ch_in: 24, ch_out: 144, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 3600}
+        depthwise_conv: Conv2d {ch_in: 144, ch_out: 144, stride: [2, 2], kernel_size: [5, 5], dilation: [1, 1], groups: 144, padding: Same, params: 3744}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 144, d_output: 36, bias: true, params: 5220}
+            fc2: Linear {d_input: 36, d_output: 144, bias: true, params: 5328}
+            sigmoid: Sigmoid
+            params: 10548
+          }
+        project_conv: Conv2d {ch_in: 144, ch_out: 40, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 5800}
+        use_residual: false
+        params: 23692
+      }
+      4: MBConv {
+        expand_conv: Conv2d {ch_in: 40, ch_out: 240, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9840}
+        depthwise_conv: Conv2d {ch_in: 240, ch_out: 240, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 240, padding: Same, params: 6240}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 240, d_output: 60, bias: true, params: 14460}
+            fc2: Linear {d_input: 60, d_output: 240, bias: true, params: 14640}
+            sigmoid: Sigmoid
+            params: 29100
+          }
+        project_conv: Conv2d {ch_in: 240, ch_out: 40, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9640}
+        use_residual: true
+        params: 54820
+      }
+      5: MBConv {
+        expand_conv: Conv2d {ch_in: 40, ch_out: 240, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 9840}
+        depthwise_conv: Conv2d {ch_in: 240, ch_out: 240, stride: [2, 2], kernel_size: [3, 3], dilation: [1, 1], groups: 240, padding: Same, params: 2400}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 240, d_output: 60, bias: true, params: 14460}
+            fc2: Linear {d_input: 60, d_output: 240, bias: true, params: 14640}
+            sigmoid: Sigmoid
+            params: 29100
+          }
+        project_conv: Conv2d {ch_in: 240, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 19280}
+        use_residual: false
+        params: 60620
+      }
+      6: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 480, padding: Same, params: 4800}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38480}
+        use_residual: true
+        params: 197960
+      }
+      7: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 480, padding: Same, params: 4800}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 80, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38480}
+        use_residual: true
+        params: 197960
+      }
+      8: MBConv {
+        expand_conv: Conv2d {ch_in: 80, ch_out: 480, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 38880}
+        depthwise_conv: Conv2d {ch_in: 480, ch_out: 480, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 480, padding: Same, params: 12480}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 480, d_output: 120, bias: true, params: 57720}
+            fc2: Linear {d_input: 120, d_output: 480, bias: true, params: 58080}
+            sigmoid: Sigmoid
+            params: 115800
+          }
+        project_conv: Conv2d {ch_in: 480, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 53872}
+        use_residual: false
+        params: 221032
+      }
+      9: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75376}
+        use_residual: true
+        params: 395416
+      }
+      10: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 112, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75376}
+        use_residual: true
+        params: 395416
+      }
+      11: MBConv {
+        expand_conv: Conv2d {ch_in: 112, ch_out: 672, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 75936}
+        depthwise_conv: Conv2d {ch_in: 672, ch_out: 672, stride: [2, 2], kernel_size: [5, 5], dilation: [1, 1], groups: 672, padding: Same, params: 17472}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 672, d_output: 168, bias: true, params: 113064}
+            fc2: Linear {d_input: 168, d_output: 672, bias: true, params: 113568}
+            sigmoid: Sigmoid
+            params: 226632
+          }
+        project_conv: Conv2d {ch_in: 672, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 129216}
+        use_residual: false
+        params: 449256
+      }
+      12: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      13: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      14: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [5, 5], dilation: [1, 1], groups: 1152, padding: Same, params: 29952}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 192, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 221376}
+        use_residual: true
+        params: 1138656
+      }
+      15: MBConv {
+        expand_conv: Conv2d {ch_in: 192, ch_out: 1152, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 222336}
+        depthwise_conv: Conv2d {ch_in: 1152, ch_out: 1152, stride: [1, 1], kernel_size: [3, 3], dilation: [1, 1], groups: 1152, padding: Same, params: 11520}
+        squeeze_excite: SqueezeExcite {
+            fc1: Linear {d_input: 1152, d_output: 288, bias: true, params: 332064}
+            fc2: Linear {d_input: 288, d_output: 1152, bias: true, params: 332928}
+            sigmoid: Sigmoid
+            params: 664992
+          }
+        project_conv: Conv2d {ch_in: 1152, ch_out: 320, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 368960}
+        use_residual: false
+        params: 1267808
+      }
+    }
+    conv_head: Conv2d {ch_in: 320, ch_out: 1280, stride: [1, 1], kernel_size: [1, 1], dilation: [1, 1], groups: 1, padding: Valid, params: 410880}
+    relu: Relu
+    num_features: 1280
+    params: 7121840
+  }
+  species_head: SpeciesHead {
+    fc1: Linear {d_input: 1280, d_output: 1280, bias: true, params: 1639680}
+    fc2: Linear {d_input: 1280, d_output: 5, bias: true, params: 6405}
+    dropout: Dropout {prob: 0.3}
+    relu: Relu
+    params: 1646085
+  }
+  stage_head: StageHead {
+    fc1: Linear {d_input: 1280, d_output: 512, bias: true, params: 655872}
+    fc2: Linear {d_input: 512, d_output: 4, bias: true, params: 2052}
+    dropout: Dropout {prob: 0.3}
+    relu: Relu
+    params: 657924
+  }
+  relu: Relu
+  stage_loss_lambda: 0.25
+  params: 9425849
+}
+2026-01-17T23:41:48.287706Z  INFO burn_train::learner::strategies::single::epoch: Executing training step for epoch 1
+2026-01-17T23:41:51.371469Z  INFO burn_train::learner::strategies::single::epoch: Iteration 1
+2026-01-17T23:41:51.375377Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T23:41:51.375514Z  INFO cubecl_runtime::tune::tune_cache: Loaded 6 autotune cached entries
+2026-01-17T23:41:51.375555Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [3, 3], stride: [2, 2], padding: [65, 65], dilation: [1, 1], groups: 1, in_channels: 4, out_channels: 32, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:41:51.504823Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T23:41:51.504956Z  INFO cubecl_runtime::tune::tune_cache: Loaded 8 autotune cached entries
+2026-01-17T23:41:51.505018Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 32, k: 64, lhs_pow2_factor: 2, rhs_pow2_factor: 2, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:03.702590Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [3, 3], stride: [1, 1], padding: [1, 1], dilation: [1, 1], groups: 32, in_channels: 32, out_channels: 32, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:03.780161Z  INFO cubecl_runtime::tune::tune_cache: Load autotune cache ...
+2026-01-17T23:42:03.780267Z  INFO cubecl_runtime::tune::tune_cache: Loaded 4 autotune cached entries
+2026-01-17T23:42:03.780299Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 8, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 1, NumOps: 4
+2026-01-17T23:42:03.781182Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 8, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:04.540698Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 32, k: 8, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 2, NumOps: 16
+2026-01-17T23:42:04.541531Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 32, k: 8, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:07.674966Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 32, out_channels: 16, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:07.733415Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 16, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:19.122460Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 16, out_channels: 128, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:19.207531Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 128, k: 16, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:35.525407Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [3, 3], stride: [2, 2], padding: [65, 65], dilation: [1, 1], groups: 96, in_channels: 128, out_channels: 128, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:35.623106Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 32, k: 128, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 1, NumOps: 4
+2026-01-17T23:42:35.623955Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 32, k: 128, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:35.697748Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 128, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 2, NumOps: 16
+2026-01-17T23:42:35.698606Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 128, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:35.785707Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 128, out_channels: 32, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:35.929969Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 32, k: 128, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:37.614272Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 32, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:37.896948Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 256, k: 32, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:47.917454Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [3, 3], stride: [1, 1], padding: [1, 1], dilation: [1, 1], groups: 144, in_channels: 256, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:48.175335Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 64, k: 256, lhs_pow2_factor: 3, rhs_pow2_factor: 2, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 1, NumOps: 4
+2026-01-17T23:42:48.176244Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 64, k: 256, lhs_pow2_factor: 3, rhs_pow2_factor: 2, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:48.259772Z  INFO cubecl_runtime::tune::tuner: Tuning FusedMatmulAutotuneKey - MatmulKey: MatmulAutotuneKey { definition: MatmulProblemDefinition { m: 2, n: 256, k: 64, lhs_pow2_factor: 2, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General } }, NumOutBuffers: 2, NumOps: 16
+2026-01-17T23:42:48.260709Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 2, n: 256, k: 64, lhs_pow2_factor: 2, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: Contiguous }, Analysis: MatmulAutotuneAnalysis { scale_global: Small, kind: General }
+2026-01-17T23:42:51.680789Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 256, out_channels: 32, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:51.953588Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 32, k: 256, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:42:55.101168Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [5, 5], stride: [2, 2], padding: [66, 66], dilation: [1, 1], groups: 144, in_channels: 256, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:55.524234Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 256, out_channels: 64, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:42:56.096025Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 64, k: 256, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:43:00.692044Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 64, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:43:01.234470Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 256, k: 64, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:43:10.422552Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [5, 5], stride: [1, 1], padding: [2, 2], dilation: [1, 1], groups: 240, in_channels: 256, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:43:11.291283Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [3, 3], stride: [2, 2], padding: [65, 65], dilation: [1, 1], groups: 240, in_channels: 256, out_channels: 256, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:43:11.682110Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 256, out_channels: 128, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:43:12.733844Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 128, k: 256, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:43:21.902964Z  INFO cubecl_runtime::tune::tuner: Tuning ConvAutotuneKey { kernel_size: [1, 1], stride: [1, 1], padding: [0, 0], dilation: [1, 1], groups: 1, in_channels: 128, out_channels: 512, shape: [128, 128], batch_size: 2, has_bias: true, dtype: F32 }
+2026-01-17T23:43:24.082234Z  INFO cubecl_runtime::tune::tuner: Tuning MatmulAutotuneKey - Definition: MatmulProblemDefinition { m: 32768, n: 512, k: 128, lhs_pow2_factor: 3, rhs_pow2_factor: 3, elem_lhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_rhs: MatmulElemType { elem: Float(F32), quantized: false }, elem_out: MatmulElemType { elem: Float(F32), quantized: false }, matrix_layout_lhs: Contiguous, matrix_layout_rhs: MildlyPermuted { transposed: true, batch_swap: false } }, Analysis: MatmulAutotuneAnalysis { scale_global: Large, kind: General }
+2026-01-17T23:43:35.187537Z  WARN wgpu_hal::vulkan::instance: GENERAL [../src/intel/vulkan/i915/anv_batch_chain.c:975 (0x0)]
+	execbuf2 failed: Input/output error (VK_ERROR_DEVICE_LOST)
+2026-01-17T23:43:35.187612Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: QUEUE, hndl: 0x5a49e8bcb110, name: ?)
+2026-01-17T23:43:35.187694Z ERROR burn_train::learner::application_logger: PANIC => panicked at /home/fossouomartial/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-26.0.1/src/backend/wgpu_core.rs:1663:30:
+Error in Device::poll: Validation Error
+
+Caused by:
+  Parent device is lost
+
+2026-01-17T23:43:35.187707Z ERROR wgpu::backend::wgpu_core: Handling wgpu errors as fatal by default
+2026-01-17T23:43:35.187753Z ERROR burn_train::learner::application_logger: PANIC => panicked at /home/fossouomartial/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-26.0.1/src/backend/wgpu_core.rs:2391:18:
+wgpu error: Validation Error
+
+Caused by:
+  In a CommandEncoder
+    In a pass parameter
+      Encoder is invalid
+
+

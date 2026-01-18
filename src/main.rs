@@ -1,128 +1,67 @@
-use std::fs::{self, File};
-use std::io::BufReader;
-use std::path::{Path, PathBuf};
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+mod config;
+mod data;
+mod efficientnet;
+mod heads;
+mod malaria_model;
+mod training;
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Size {
-    height: u32,
-    width: u32,
-}
+use crate::config::ModelConfig;
+use crate::training::MalariaTrainer;
+use anyhow::Result;
+use burn::backend::{
+    wgpu::{Wgpu, WgpuDevice},
+    Autodiff,
+};
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Bitmap {
-    origin: [u32; 2],
-    cx: f32,
-    cy: f32,
-    w: f32,
-    h: f32,
-}
+type Backend = Autodiff<Wgpu<f32, i32>>;
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Object {
-    classTitle: String,
-    geometryType: String,
-    bitmap: Bitmap,
-}
+fn main() -> Result<()> {
+    println!("╔══════════════════════════════════════════════════════╗");
+    println!("║     EFFICIENTNET B0 - MALARIA DETECTION              ║");
+    println!("║  Multi-Task: Species + Stage Classification          ║");
+    println!("╚══════════════════════════════════════════════════════╝");
 
-#[derive(Serialize, Deserialize, Debug)]
-struct CleanedJson {
-    size: Size,
-    object: Object,
-}
+    let device = WgpuDevice::default();
 
-fn process_folder(input_folder: &Path, output_folder: &Path) -> std::io::Result<()> {
-    // Créer le dossier output s'il n'existe pas
-    if !output_folder.exists() {
-        fs::create_dir(output_folder)?;
-    }
+    // ✅ Configuration optimisée pour WGPU
+    let config = ModelConfig {
+        image_width: 128,
+        image_height: 128,
+        efficientnet_variant: "b0".to_string(),
+        batch_size: 2,           // ✅ RÉDUIT pour WGPU
+        num_epochs: 20,
+        use_cache: true,
+        num_workers: 0,          // ✅ CRITIQUE: DOIT être 0 pour WGPU
+        learning_rate: 0.001,
+        dropout_rate: 0.3,
+        data_path: "data".to_string(),
+        train_val_split: 0.8,
+        grad_accum_steps: 2,     // ✅ Compense le batch_size réduit
+        ..Default::default()
+    };
 
-    for entry in fs::read_dir(input_folder)? {
-        let entry = entry?;
-        let path = entry.path();
+    println!("\n⚙️ Configuration EfficientNet:");
+    println!("   • Image: {}x{}", config.image_width, config.image_height);
+    println!("   • EfficientNet: B0");
+    println!("   • Batch size: {} (optimisé WGPU)", config.batch_size);
+    println!("   • Grad accum: {} (effective batch={})", 
+             config.grad_accum_steps, 
+             config.batch_size * config.grad_accum_steps);
+    println!("   • Dropout: {}", config.dropout_rate);
+    println!("   • Époques: {}", config.num_epochs);
+    println!("   • Workers: {} (WGPU single-threaded)", config.num_workers);
+    println!("   • Device: {:?}\n", device);
 
-        // Si c'est un dossier, on le saute (pour l'instant)
-        if path.is_dir() {
-            continue;
+    let trainer = MalariaTrainer::<Backend>::new(config, device);
+    
+    match trainer.run() {
+        Ok(_) => {
+            println!("✅ Programme terminé avec succès!");
+            Ok(())
         }
-
-        if path.extension().and_then(|s| s.to_str()) == Some("json") {
-            println!("🔹 Traitement du fichier {:?}", path.file_name().unwrap());
-
-            let file = File::open(&path)?;
-            let reader = BufReader::new(file);
-            let json_value: Value = match serde_json::from_reader(reader) {
-                Ok(v) => v,
-                Err(_) => {
-                    println!("⚠️  Impossible de lire {:?}", path);
-                    continue;
-                }
-            };
-
-            // Sauter si JSON vide ou sans objet
-            if json_value.is_null() || json_value["objects"].as_array().unwrap_or(&vec![]).is_empty() {
-                println!("⚠️  Fichier vide ou sans objet, on saute: {:?}", path.file_name().unwrap());
-                continue;
-            }
-
-            // Prendre le premier objet seulement
-            let first_object = &json_value["objects"][0];
-
-            // Construire le JSON nettoyé
-            let cleaned = CleanedJson {
-                size: serde_json::from_value(json_value["size"].clone())
-                    .unwrap_or(Size { height: 0, width: 0 }),
-                object: Object {
-                    classTitle: first_object["classTitle"].as_str().unwrap_or("").to_string(),
-                    geometryType: first_object["geometryType"].as_str().unwrap_or("").to_string(),
-                    bitmap: Bitmap {
-                        origin: [
-                            first_object["bitmap"]["origin"][0].as_u64().unwrap_or(0) as u32,
-                            first_object["bitmap"]["origin"][1].as_u64().unwrap_or(0) as u32,
-                        ],
-                        cx: first_object["bitmap"]["cx"].as_f64().unwrap_or(0.0) as f32,
-                        cy: first_object["bitmap"]["cy"].as_f64().unwrap_or(0.0) as f32,
-                        w: first_object["bitmap"]["w"].as_f64().unwrap_or(0.0) as f32,
-                        h: first_object["bitmap"]["h"].as_f64().unwrap_or(0.0) as f32,
-                    },
-                },
-            };
-
-            // Sauvegarder le JSON nettoyé
-            let file_name = path.file_name().unwrap();
-            let output_path = output_folder.join(file_name);
-            let output_file = File::create(output_path)?;
-            serde_json::to_writer_pretty(output_file, &cleaned)?;
+        Err(e) => {
+            eprintln!("❌ Erreur pendant l'entraînement: {}", e);
+            Err(e)
         }
     }
-
-    Ok(())
-}
-
-fn main() -> std::io::Result<()> {
-    let input_root = Path::new("data_clean");
-    let output_root = Path::new("data_correct");
-
-    // Créer le dossier output racine
-    if !output_root.exists() {
-        fs::create_dir(output_root)?;
-    }
-
-    // Parcourir les 4 sous-dossiers
-    for subfolder in fs::read_dir(input_root)? {
-        let entry = subfolder?;
-        let input_path = entry.path();
-
-        if input_path.is_dir() {
-            let folder_name = input_path.file_name().unwrap();
-            let output_path = output_root.join(folder_name);
-            println!("📁 Traitement du dossier {:?}", folder_name);
-
-            process_folder(&input_path, &output_path)?;
-        }
-    }
-
-    println!("✅ Tous les fichiers ont été nettoyés !");
-    Ok(())
 }

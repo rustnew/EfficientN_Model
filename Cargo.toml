@@ -1,15 +1,21 @@
 [package]
 name = "multi_model"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+burn = { version = "0.19.0", features = ["train", "autodiff", "wgpu"] }
+burn-train = "0.19.1"
+burn-tensor = "0.19.1"
+burn-nn = "0.19.1"
+burn-core = "0.19.1"
+burn-autodiff = "0.19.1"
+burn-wgpu = "0.19.1"
 
-image = "0.25.9"
-rand = "0.9.2"
-serde = { version = "1.0", features = ["derive"] }
+image = "0.25"
 anyhow = "1.0"
-rayon = "1.10.0"
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
-serde_json = "1.0"
+rand = "0.8"
+rayon = "1.8"
+serde = { version = "1.0", features = ["derive"] }
+
 
